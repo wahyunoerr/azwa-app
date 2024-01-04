@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                        <a href="{{ route('kategori') }}" class="nav-link">
                             <i class="fas fa-sloid fa-list"></i>
                             <p>
                                 Categories
@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                        <a href="{{ route('produk') }}" class="nav-link">
                             <i class="fas fa-sloid fa-box"></i>
                             <p>
                                 Product

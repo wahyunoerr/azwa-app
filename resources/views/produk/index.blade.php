@@ -14,13 +14,30 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('kategori.save') }}" method="POST">
+                    <form action="{{ route('produk.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Categories Name</label>
-                                <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Categories Name">
+                                <label for="exampleInputEmail1">Product Name</label>
+                                <input type="text" name="nama_produk" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Product Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Kategori Name</label>
+                                <select class="form-control" name="kategori_id" id="">
+                                    @foreach ($kategori as $item)
+                                        <option value="{{ $item->id }}">{{ $item->kategori_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Harga</label>
+                                <input type="number" name="harga" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Harga">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">gambar</label>
+                                <input type="file" name="gambar" class="form-control">
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -45,15 +62,21 @@
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>
-                                    <th>Categories Name</th>
+                                    <th>Product Name</th>
+                                    <th>Kategori Name</th>
+                                    <th>Harga</th>
+                                    <th>Gambar</th>
                                     <th class="text-center" width="20px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $kat)
+                                @foreach ($data as $prod)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $kat->kategori_name }}</td>
+                                        <td>{{ $prod->name }}</td>
+                                        <td>{{ $prod->kategori_name }}</td>
+                                        <td>{{ $prod->harga }}</td>
+                                        <td><img src="{{ $prod->gambar }}" alt="" width="50px"></td>
                                         <td>
                                             <a href="#" class="text-info" data-toggle="modal"
                                                 data-target="#edit-modal"><i class="fas fa-solid fa-pen"></i></a> |
@@ -65,7 +88,10 @@
                             <tfoot>
                                 <tr>
                                     <th widht="10px">No</th>
-                                    <th>Categories Name</th>
+                                    <th>Product Name</th>
+                                    <th>Kategori Name</th>
+                                    <th>Harga</th>
+                                    <th>Gambar</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </tfoot>
