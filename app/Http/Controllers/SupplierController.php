@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class KategoriController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        $data = DB::table("table_kategori")->get();
-        return view('categories.index', [
-            'data' => $data
-        ]);
+
+        $data = DB::table('tb_supplier')->get();
+        return view('supplier.index', compact('data'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,11 +32,7 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table("table_kategori")->insert([
-            'kategori_name' => $request->name
-        ]);
-
-        return redirect('kategori');
+        //
     }
 
     /**
@@ -51,8 +48,7 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        $data = DB::table("table_kategori")->where("id", $id)->get();
-        return view('categories.edit', compact('data'));
+        //
     }
 
     /**
@@ -60,21 +56,14 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        DB::table('table_kategori')->where('id', $id)->update([
-            'kategori_name' => $request->name,
-        ]);
-
-        return redirect('kategori');
+        //
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        DB::table("table_kategori")->where('id', $id)->delete();
-
-        return redirect('kategori');
+        //
     }
 }

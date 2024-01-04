@@ -1,7 +1,7 @@
 @extends('template.index')
-@section('title', 'Categories')
-@section('content-head', 'Categories')
-@section('breadcrumb', 'Categories')
+@section('title', 'Edit Categories')
+@section('content-head', 'Edit Categories')
+@section('breadcrumb', 'Edit Categories')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -10,25 +10,30 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Form Input Categories</h3>
+                        <h3 class="card-title">Form Edit Categories</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('kategori.save') }}" method="POST">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Categories Name</label>
-                                <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Categories Name">
+                    @foreach ($data as $kat)
+                        <form action="{{ route('kategori.update', ['id' => $kat->id]) }}" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <input type="hidden" name="id" value="{{ $kat->id }}">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Categories Name</label>
+                                    <input type="text" name="name" value="{{ $kat->kategori_name }}"
+                                        class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer d-flex">
-                            <button type="submit" class="btn btn-primary ml-auto"><i
-                                    class="fas fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
+                            <!-- /.card-body -->
+                            <div class="card-footer d-flex">
+                                <button type="submit" class="btn btn-primary ml-auto"><i
+                                        class="fas fa-solid fa-plus"></i></button>
+                            </div>
+                        </form>
+                    @endforeach
+
+
                 </div>
             </div>
             {{-- End --}}
@@ -57,8 +62,7 @@
                                         <td>
                                             <a href="{{ route('kategori.edit', $kat->id) }}"><i
                                                     class="fas fa-solid fa-pen"></i></a> |
-                                            <a href="{{ route('kategori.delete', $kat->id) }}" class="text-danger"><i
-                                                    class="fas fa-solid fa-trash"></i></a>
+                                            <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -78,6 +82,8 @@
             {{-- End --}}
             <!-- /.row -->
         </div>
+    </div>
+    <!-- /.modal -->
     </div>
 
     @push('datatables')

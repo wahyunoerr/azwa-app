@@ -1,6 +1,6 @@
 @extends('template.index')
 @section('title', 'Dashboard')
-@section('content-head', 'Dashboad')
+@section('content-head', 'Dashboard')
 @section('breadcrumb', 'Dashboard')
 @section('content')
     <div class="container-fluid">

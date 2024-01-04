@@ -37,8 +37,9 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 @hasrole('admin')
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -46,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('kategori') }}" class="nav-link">
+                        <a href="{{ route('kategori') }}" class="nav-link {{ request()->is('kategori') ? 'active' : '' }}">
                             <i class="fas fa-sloid fa-list"></i>
                             <p>
                                 Categories
@@ -54,7 +55,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('produk') }}" class="nav-link">
+                        <a href="{{ route('produk') }}" class="nav-link {{ request()->is('produk') ? 'active' : '' }}">
                             <i class="fas fa-sloid fa-box"></i>
                             <p>
                                 Product
@@ -64,7 +65,7 @@
                 @endhasrole
                 @hasanyrole('admin|supplier')
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                        <a href="{{ route('supplier') }}" class="nav-link {{ request()->is('supplier') ? 'active' : '' }}">
                             <i class="fas fa-sloid fa-truck"></i>
                             <p>
                                 Supplier
@@ -74,7 +75,7 @@
                 @endhasanyrole
                 @hasanyrole('admin|user')
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                        <a href="pages/widgets.html" class="nav-link {{ request()->is('transaksi') ? 'active' : '' }}">
                             <i class="fas fa-regular fa-money-bill"></i>
                             <p>
                                 Transaction

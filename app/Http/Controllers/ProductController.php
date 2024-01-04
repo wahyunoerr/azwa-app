@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // 
     }
 
     /**
@@ -57,7 +57,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = DB::table('table_kategori')->get();
+        $data = DB::table('table_product')->where('id', $id)->get();
+        return view('produk.edit', compact('data', 'kategori'));
     }
 
     /**
@@ -65,7 +67,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('table_product')->where('id', $id)->update([
+            'name' => $request->nama_produk,
+            'kategori_id' => $request->kategori_id,
+            'harga' => $request->harga,
+            'gambar' => $request->gambar->store('photo/produk', 'public')
+        ]);
+
+        return redirect('produk');
     }
 
     /**
@@ -73,6 +82,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('table_product')->where('id', $id)->delete();
+
+        return redirect('produk');
     }
 }
