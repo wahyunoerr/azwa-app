@@ -7,8 +7,6 @@
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{ asset('assets-admin/plugins/chart.js/Chart.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('assets-admin/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('assets-admin/dist/js/pages/dashboard3.js') }}"></script>
 <!-- DataTables  & Plugins -->

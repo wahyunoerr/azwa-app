@@ -36,31 +36,33 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="fas fa-sloid fa-list"></i>
-                        <p>
-                            Categories
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="fas fa-sloid fa-box"></i>
-                        <p>
-                            Product
-                        </p>
-                    </a>
-                </li>
-                @hasrole('supplier')
+                @hasrole('admin')
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/widgets.html" class="nav-link">
+                            <i class="fas fa-sloid fa-list"></i>
+                            <p>
+                                Categories
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/widgets.html" class="nav-link">
+                            <i class="fas fa-sloid fa-box"></i>
+                            <p>
+                                Product
+                            </p>
+                        </a>
+                    </li>
+                @endhasrole
+                @hasanyrole('admin|supplier')
                     <li class="nav-item">
                         <a href="pages/widgets.html" class="nav-link">
                             <i class="fas fa-sloid fa-truck"></i>
@@ -69,8 +71,8 @@
                             </p>
                         </a>
                     </li>
-                @endhasrole
-                @hasrole('user')
+                @endhasanyrole
+                @hasanyrole('admin|user')
                     <li class="nav-item">
                         <a href="pages/widgets.html" class="nav-link">
                             <i class="fas fa-regular fa-money-bill"></i>
@@ -79,7 +81,7 @@
                             </p>
                         </a>
                     </li>
-                @endhasrole
+                @endhasanyrole
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
