@@ -46,15 +46,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
         Route::post('/produk/update/{id}', 'update')->name('produk.update');
         Route::get('/produk/delete/{id}', 'destroy')->name('produk.delete');
     });
+});
 
+Route::middleware(['auth', 'role:supplier|admin'])->group(function () {
     Route::controller(SupplierController::class)->group(function () {
         Route::get('/supplier', 'index')->name('supplier');
     });
 });
-
-// Route::middleware(['auth', 'verified', 'role::supplier'])->group(function () {
-//     Route::controller(SupplierController::class)->group(function () {
-//         Route::get('/supplier', 'index')->name('supplier');
-//     });
-// });
 require __DIR__ . '/auth.php';
