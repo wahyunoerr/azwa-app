@@ -51,6 +51,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:supplier|admin'])->group(function () {
     Route::controller(SupplierController::class)->group(function () {
         Route::get('/supplier', 'index')->name('supplier');
+    });
+});
+Route::middleware(['auth', 'role:supplier'])->group(function () {
+    Route::controller(SupplierController::class)->group(function () {
         Route::post('/supplier/save', 'store')->name('supplier.save');
         Route::get('/supplier/edit/{id}', 'edit')->name('supplier.edit');
         Route::post('/supplier/update/{id}', 'update')->name('supplier.update');

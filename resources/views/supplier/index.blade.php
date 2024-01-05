@@ -6,41 +6,43 @@
     <div class="container-fluid">
         <div class="row">
             {{-- Form Add --}}
-            <div class="col-md-4">
-                <!-- general form elements -->
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Form Input Supplier</h3>
+            @hasrole('supplier')
+                <div class="col-md-4">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Form Input Supplier</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form action="{{ route('supplier.save') }}" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Supplier Name</label>
+                                    <input type="text" name="nama_sup" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Supplier Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Product Name</label>
+                                    <input type="text" name="produk_nama" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Product Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Qty Product In</label>
+                                    <input type="number" name="jlh_masuk" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Qty">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer d-flex">
+                                <button type="submit" class="btn btn-primary ml-auto"><i
+                                        class="fas fa-solid fa-plus"></i></button>
+                            </div>
+                        </form>
                     </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form action="{{ route('supplier.save') }}" method="POST">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Supplier Name</label>
-                                <input type="text" name="nama_sup" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Supplier Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Product Name</label>
-                                <input type="text" name="produk_nama" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Product Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Qty Product In</label>
-                                <input type="number" name="jlh_masuk" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Qty">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer d-flex">
-                            <button type="submit" class="btn btn-primary ml-auto"><i
-                                    class="fas fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
                 </div>
-            </div>
+            @endhasrole
             {{-- End --}}
 
             {{-- Data Tables --}}
