@@ -24,7 +24,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -32,7 +32,13 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('tb_supplier')->insert([
+            'nama' => $request->nama_sup,
+            'prd_name' => $request->produk_nama,
+            'prd_masuk' => $request->jlh_masuk
+        ]);
+
+        return redirect('supplier');
     }
 
     /**
@@ -48,7 +54,8 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('tb_supplier')->where('id', $id)->get();
+        return view('supplier.edit', compact('data'));
     }
 
     /**
@@ -56,7 +63,13 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('tb_supplier')->where('id', $id)->update([
+            'nama' => $request->nama_sup,
+            'prd_name' => $request->produk_nama,
+            'prd_masuk' => $request->jlh_masuk,
+        ]);
+
+        return redirect('supplier');
     }
 
     /**
@@ -64,6 +77,8 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('tb_supplier')->where('id', $id)->delete();
+
+        return redirect('supplier');
     }
 }

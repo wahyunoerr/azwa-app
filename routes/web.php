@@ -51,6 +51,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:supplier|admin'])->group(function () {
     Route::controller(SupplierController::class)->group(function () {
         Route::get('/supplier', 'index')->name('supplier');
+        Route::post('/supplier/save', 'store')->name('supplier.save');
+        Route::get('/supplier/edit/{id}', 'edit')->name('supplier.edit');
+        Route::post('/supplier/update/{id}', 'update')->name('supplier.update');
+        Route::get('/supplier/delete/{id}', 'destroy')->name('supplier.delete');
     });
 });
 require __DIR__ . '/auth.php';

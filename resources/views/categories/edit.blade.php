@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            {{-- Form Add --}}
+            {{-- Form Edit --}}
             <div class="col-md-4">
                 <!-- general form elements -->
                 <div class="card card-primary">
@@ -28,12 +28,10 @@
                             <!-- /.card-body -->
                             <div class="card-footer d-flex">
                                 <button type="submit" class="btn btn-primary ml-auto"><i
-                                        class="fas fa-solid fa-plus"></i></button>
+                                        class="fas fa-solid fa-check"></i></button>
                             </div>
                         </form>
                     @endforeach
-
-
                 </div>
             </div>
             {{-- End --}}
@@ -60,9 +58,9 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $kat->kategori_name }}</td>
                                         <td>
-                                            <a href="{{ route('kategori.edit', $kat->id) }}"><i
+                                            {{-- <a href="{{ route('kategori.edit', $kat->id) }}"><i
                                                     class="fas fa-solid fa-pen"></i></a> |
-                                            <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a>
+                                            <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a> --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -82,8 +80,6 @@
             {{-- End --}}
             <!-- /.row -->
         </div>
-    </div>
-    <!-- /.modal -->
     </div>
 
     @push('datatables')
