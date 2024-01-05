@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
     {
         // app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // Permission::create(['name' => 'edit produk']);
-        // Permission::create(['name' => 'delete produk']);
+        // Permission::create(['name' => 'supplier']);
+        // Permission::create(['name' => 'transaction']);
         // Permission::create(['name' => 'tambah produk']);
 
         $roleAdmin = Role::create(['name' => 'admin']);
