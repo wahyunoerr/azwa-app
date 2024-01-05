@@ -6,52 +6,47 @@
     <div class="container-fluid">
         <div class="row">
             {{-- Form Add --}}
-            {{-- <div class="col-md-4">
-                <!-- general form elements -->
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Form Input Supplier</h3>
+            @hasrole('supplier')
+                <div class="col-md-4">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Form Input Supplier</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form action="{{ route('supplier.save') }}" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Supplier Name</label>
+                                    <input type="text" name="nama_sup" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Supplier Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Product Name</label>
+                                    <input type="text" name="produk_nama" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Product Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Qty Product In</label>
+                                    <input type="number" name="jlh_masuk" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Qty">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer d-flex">
+                                <button type="submit" class="btn btn-primary ml-auto"><i
+                                        class="fas fa-solid fa-plus"></i></button>
+                            </div>
+                        </form>
                     </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form action="{{ route('produk.save') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Product Name</label>
-                                <input type="text" name="nama_produk" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Product Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Kategori Name</label>
-                                <select class="form-control" name="kategori_id" id="">
-                                    @foreach ($kategori as $item)
-                                        <option value="{{ $item->id }}">{{ $item->kategori_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Harga</label>
-                                <input type="number" name="harga" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Harga">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">gambar</label>
-                                <input type="file" name="gambar" class="form-control">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer d-flex">
-                            <button type="submit" class="btn btn-primary ml-auto"><i
-                                    class="fas fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
                 </div>
-            </div> --}}
+            @endhasrole
             {{-- End --}}
 
             {{-- Data Tables --}}
-            <div class="col-12">
+            <div class="col-md-8">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">List Tables Supplier</h3>
@@ -72,12 +67,14 @@
                                 @foreach ($data as $sup)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $sup->name }}</td>
+                                        <td>{{ $sup->nama }}</td>
                                         <td>{{ $sup->prd_name }}</td>
                                         <td>{{ $sup->prd_masuk }}</td>
                                         <td>
-                                            <a href="#"><i class="fas fa-solid fa-pen"></i></a> |
-                                            <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a>
+                                            <a href="{{ route('supplier.edit', $sup->id) }}"><i
+                                                    class="fas fa-solid fa-pen"></i></a> |
+                                            <a href="{{ route('supplier.delete', $sup->id) }}" class="text-danger"><i
+                                                    class="fas fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -97,6 +94,7 @@
                 </div>
             </div>
             {{-- End --}}
+            <!-- /.row -->
         </div>
     </div>
 

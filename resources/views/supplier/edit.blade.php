@@ -1,46 +1,38 @@
 @extends('template.index')
-@section('title', 'Edit Produk')
-@section('content-head', 'Edit Product')
-@section('breadcrumb', 'Edit Product')
+@section('title', 'Supplier')
+@section('content-head', 'Supplier')
+@section('breadcrumb', 'Supplier')
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            {{-- Form Edit --}}
+            {{-- Form Add --}}
             <div class="col-md-4">
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Form Edit Product</h3>
+                        <h3 class="card-title">Form Input Supplier</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    @foreach ($data as $prod)
-                        <form action="{{ route('produk.update', ['id' => $prod->id]) }}" method="POST"
-                            enctype="multipart/form-data">
+                    @foreach ($data as $sup)
+                        <form action="{{ route('supplier.update', $sup->id) }}" method="POST">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $sup->id }}">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Supplier Name</label>
+                                    <input type="text" name="nama_sup" value="{{ $sup->nama }}" class="form-control"
+                                        id="exampleInputEmail1" placeholder="Supplier Name">
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Product Name</label>
-                                    <input type="text" name="nama_produk" value="{{ $prod->name }}"
+                                    <input type="text" name="produk_nama" value="{{ $sup->prd_name }}"
                                         class="form-control" id="exampleInputEmail1" placeholder="Product Name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Kategori Name</label>
-                                    <select class="form-control" name="kategori_id" id="">
-                                        @foreach ($kategori as $item)
-                                            <option value="{{ $item->id }}">{{ $item->kategori_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Harga</label>
-                                    <input type="number" name="harga" value="{{ $prod->harga }}" class="form-control"
-                                        id="exampleInputEmail1" placeholder="Harga">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">gambar</label>
-                                    <input type="file" name="gambar"
-                                        value="{{ Storage::disk('public')->url($prod->gambar) }}" class="form-control">
+                                    <label for="exampleInputEmail1">Qty Product In</label>
+                                    <input type="number" name="jlh_masuk" value="{{ $sup->prd_masuk }}"
+                                        class="form-control" id="exampleInputEmail1" placeholder="Qty">
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -58,7 +50,7 @@
             <div class="col-md-8">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">List Tables Product</h3>
+                        <h3 class="card-title">List Tables Supplier</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -66,39 +58,33 @@
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>
+                                    <th>Supplier Name</th>
                                     <th>Product Name</th>
-                                    <th>Kategori Name</th>
-                                    <th>Harga</th>
-                                    <th>Gambar</th>
+                                    <th>Qty Product In</th>
                                     <th class="text-center" width="20px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $prod)
+                                @foreach ($data as $sup)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $prod->name }}</td>
-                                        <td>{{ $prod->kategori_id }}</td>
-                                        <td>{{ $prod->harga }}</td>
-                                        <td><img src="{{ Storage::disk('public')->url($prod->gambar) }}" alt=""
-                                                width="50px"></td>
+                                        <td>{{ $sup->nama }}</td>
+                                        <td>{{ $sup->prd_name }}</td>
+                                        <td>{{ $sup->prd_masuk }}</td>
                                         <td>
-                                            {{-- <a href="{{ route('produk.edit', $prod->id) }}"><i
-                                                    class="fas fa-solid fa-pen"></i></a> |
-                                            <a href="{{ route('produk.delete', $prod->id) }}" class="text-danger"><i
-                                                    class="fas fa-solid fa-trash"></i></a> --}}
+                                            {{-- <a href=""><i class="fas fa-solid fa-pen"></i></a> | --}}
+                                            {{-- <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a> --}}
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th widht="10px">No</th>
+                                    <th width="20px">No</th>
+                                    <th>Supplier Name</th>
                                     <th>Product Name</th>
-                                    <th>Kategori Name</th>
-                                    <th>Harga</th>
-                                    <th>Gambar</th>
-                                    <th class="text-center">Action</th>
+                                    <th>Qty Product In</th>
+                                    <th class="text-center" width="20px">Action</th>
                                 </tr>
                             </tfoot>
                         </table>
