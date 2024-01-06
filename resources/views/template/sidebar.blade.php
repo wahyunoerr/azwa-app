@@ -73,9 +73,21 @@
                         </a>
                     </li>
                 @endhasanyrole
+                @hasrole('user')
+                    <li class="nav-item">
+                        <a href="{{ route('pesanan', $order->id) }}"
+                            class="nav-link {{ request()->is('pesanan') ? 'active' : '' }}">
+                            <i class="fas fa-cart-shopping"></i>
+                            <p>
+                                Order
+                            </p>
+                        </a>
+                    </li>
+                @endhasrole
                 @hasanyrole('admin|user')
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link {{ request()->is('transaksi') ? 'active' : '' }}">
+                        <a href="{{ route('transaksi') }}"
+                            class="nav-link {{ request()->is('transaksi') ? 'active' : '' }}">
                             <i class="fas fa-regular fa-money-bill"></i>
                             <p>
                                 Transaction

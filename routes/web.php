@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,20 @@ Route::middleware(['auth', 'role:supplier'])->group(function () {
         Route::get('/supplier/edit/{id}', 'edit')->name('supplier.edit');
         Route::post('/supplier/update/{id}', 'update')->name('supplier.update');
         Route::get('/supplier/delete/{id}', 'destroy')->name('supplier.delete');
+    });
+});
+
+Route::middleware(['auth', 'role:user|admin'])->group(function () {
+    Route::controller(TransaksiController::class)->group(function () {
+        Route::get('/transaksi', 'index')->name('transaksi');
+        Route::post('/orders', 'store');
+    });
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::controller(TransaksiController::class)->group(function () {
+        Route::get('/pesanan/{id}', 'order')->name('pesanan');
+        Route::post('/orders', 'store');
     });
 });
 require __DIR__ . '/auth.php';

@@ -5,15 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class WelcomeController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = DB::table('table_product')->get();
-        return view('landing-page', compact('data'));
+        return view('transaksi.index');
+    }
+
+    function order(string $id)
+    {
+        $order = DB::table('table_produk')->where('id', $id)->get();
+
+        return view('order.index', compact('order'));
+    }
+
+    function orderStore(Request $request)
+    {
+        // DB::table('table_transaksi')->insert([
+        //     'nama_produk' => $request->
+        // ]);
     }
 
     /**
@@ -23,12 +36,13 @@ class WelcomeController extends Controller
     {
         //
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        DB::table('table_transaksi')->insert([]);
     }
 
     /**
