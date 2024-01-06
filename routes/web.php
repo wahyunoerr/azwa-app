@@ -74,7 +74,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(TransaksiController::class)->group(function () {
         Route::get('/pesanan', 'order')->name('order');
         Route::get('/pesanan/{id}', 'orderGetId')->name('pesanan');
-        Route::post('/order/save', 'orderStore')->name('order.save');
+        Route::post('/pesanan/save', 'orderStore')->name('order.save');
+        Route::get('/pesanan/upload/{id}', 'edit')->name('pesanan.upload');
+        Route::post('/pesanan/upadte/{id}', 'update')->name('pesanan.update');
+        Route::get('/pesanan/delete/{id}', 'destroy')->name('pesanan.delete');
     });
 });
 require __DIR__ . '/auth.php';

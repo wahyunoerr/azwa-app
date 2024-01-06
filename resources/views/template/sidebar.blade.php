@@ -76,7 +76,7 @@
                 @hasrole('user')
                     <li class="nav-item">
                         <a href="{{ route('order') }}" class="nav-link {{ request()->is('pesanan') ? 'active' : '' }}">
-                            <i class="fas fa-cart-shopping"></i>
+                            <i class="fas fa-shopping-cart"></i>
                             <p>
                                 Order
                             </p>

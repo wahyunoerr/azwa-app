@@ -39,6 +39,11 @@
                                 <input type="number" name="harga" value="{{ $order->harga }}" class="form-control"
                                     id="exampleInputEmail1" placeholder="Price">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Price</label>
+                                <input type="number" name="bukti_transaksi" value="" class="form-control"
+                                    id="exampleInputEmail1" placeholder="Price">
+                            </div>
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-outline-primary btn-lg btn-flat rounded"><i
                                         class="fas fa-regular fa-money-bill"></i>
