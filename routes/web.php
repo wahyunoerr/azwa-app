@@ -74,7 +74,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(TransaksiController::class)->group(function () {
         Route::get('/pesanan', 'order')->name('order');
         Route::get('/pesanan/{id}', 'orderGetId')->name('pesanan');
-        Route::post('/orders', 'store');
+        Route::post('/order/save', 'orderStore')->name('order.save');
     });
 });
 require __DIR__ . '/auth.php';

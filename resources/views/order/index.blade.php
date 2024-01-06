@@ -7,37 +7,46 @@
         <!-- Default box -->
         <div class="card card-solid">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <h3 class="d-inline-block d-sm-none"></h3>
-                        <div class="col-12">
-                            <img src="{{ Storage::disk('public')->url($order->gambar) }}" class="product-image"
-                                alt="Product Image">
+                <form action="{{ route('order.save') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <h3 class="d-inline-block d-sm-none"></h3>
+                            <div class="col-12">
+                                {{-- <input type="file" value="{{ Storage::disk('public')->url($order->gambar) }}" multiple> --}}
+                                <img src="{{ Storage::disk('public')->url($order->gambar) }}" class="product-image"
+                                    alt="Product Image">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <h3 class="my-3">Nama Produk: {{ $order->name }}</h3>
-                        <h3 class="my-3">Kategori: {{ $order->kategori_id }}</h3>
-                        <h3 class="my-3">Nama Pembeli: {{ Auth::user()->name }}</h3>
-                        {{-- <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown
-                                    aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure
-                                    terr.</p> --}}
-                        <hr>
-
-                        <div class="bg-gray py-2 px-3 mt-4">
-                            <h2 class="mb-0">
-                                Rp.{{ $order->harga }}
-                            </h2>
-                        </div>
-
-                        <div class="mt-4">
-                            <div class="btn btn-primary btn-lg btn-flat">
-                                <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                                Pembayaran
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Product Name</label>
+                                <input type="text" name="name_prd" value="{{ $order->name }}" class="form-control"
+                                    id="exampleInputEmail1" placeholder="Product Name" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Categories Name</label>
+                                <input type="text" name="kategori_id" value="{{ $order->kategori_id }}"
+                                    class="form-control" id="exampleInputEmail1" placeholder="Categories Name" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name User</label>
+                                <input type="text" name="username" value="{{ Auth::user()->id }}" class="form-control"
+                                    id="exampleInputEmail1" placeholder="Product Name" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Price</label>
+                                <input type="number" name="harga" value="{{ $order->harga }}" class="form-control"
+                                    id="exampleInputEmail1" placeholder="Price" disabled>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-outline-primary btn-lg btn-flat rounded"><i
+                                        class="fas fa-regular fa-money-bill"></i>
+                                    Bayar</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <!-- /.card-body -->
         </div>
