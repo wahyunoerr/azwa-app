@@ -34,27 +34,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    @hasrole('admin')
-                                        <td>kodetransaksi</td>
-                                    @endhasrole
-                                    <td>nmproduk</td>
-                                    @hasrole('admin')
-                                        <td>pembeli</td>
-                                    @endhasrole
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <input type="file">
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <a href="#"><i class="fas fa-solid fa-pen"></i></a> |
-                                        <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        @hasrole('admin')
+                                            <td>{{ $item->kode_transaksi }}</td>
+                                        @endhasrole
+                                        <td>{{ $item->nmprd }}</td>
+                                        @hasrole('admin')
+                                            <td>{{ $item->name }}</td>
+                                        @endhasrole
+                                        <td>{{ $item->kategori_name }}</td>
+                                        <td>{{ $item->harga }}</td>
+                                        <td> <img src="{{ Storage::disk('public')->url($item->gambar) }}"
+                                                class="product-image" alt="Product Image"></td>
+                                        <td>
+                                            <input type="file">
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <a href="#"><i class="fas fa-solid fa-pen"></i></a> |
+                                            <a href="#" class="text-danger"><i class="fas fa-solid fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>

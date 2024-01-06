@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
@@ -12,7 +13,13 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return view('transaksi.index');
+        $data = DB::table('table_transaksi')
+            ->join('table_product', 'table_transaksi.nama_produk', '=', 'table_product.id')
+            ->join('table_kategori', 'table_transaksi.kategori_id', '=', 'table_kategori.id')
+            ->join('users', 'table_transaksi.user_id', '=', 'users.id')
+            ->select('table_transaksi.*', 'table_product.name as nmprd', 'table_kategori.kategori_name', 'users.name')
+            ->get();
+        return view('transaksi.index', compact('data'));
     }
 
     function order()
@@ -30,14 +37,18 @@ class TransaksiController extends Controller
 
     function orderStore(Request $request)
     {
-        $kd = "KDP-" . time();
+        $kd = "KDP" . "-" . time();
+        $produk = DB::table('table_product')->first();
 
         DB::table('table_transaksi')->insert([
             'kode_transaksi' => $kd,
-            'nama_produk' => $request->name_prd,
-            'kategori_id' => $request->kategori_id,
-            'user_id' => $request->username,
-            'harga' => $request->harga,
+            'nama_produk' => $produk->id,
+            'gambar' => $produk->gambar,
+            'kategori_id' => $produk->kategori_id,
+            'user_id' => Auth::id(),
+            'harga' => $produk->harga,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         return redirect('transaksi');
