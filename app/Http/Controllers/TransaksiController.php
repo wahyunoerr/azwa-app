@@ -15,10 +15,16 @@ class TransaksiController extends Controller
         return view('transaksi.index');
     }
 
-    function order(string $id)
+    function order()
     {
-        $order = DB::table('table_produk')->where('id', $id)->get();
 
+        $order = DB::table('table_product')->get();
+        return view('order.index', compact('order'));
+    }
+
+    function orderGetId(string $id)
+    {
+        $order = DB::table('table_product')->where('id', $id)->first();
         return view('order.index', compact('order'));
     }
 

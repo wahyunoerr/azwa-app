@@ -75,8 +75,7 @@
                 @endhasanyrole
                 @hasrole('user')
                     <li class="nav-item">
-                        <a href="{{ route('pesanan', $order->id) }}"
-                            class="nav-link {{ request()->is('pesanan') ? 'active' : '' }}">
+                        <a href="{{ route('order') }}" class="nav-link {{ request()->is('pesanan') ? 'active' : '' }}">
                             <i class="fas fa-cart-shopping"></i>
                             <p>
                                 Order

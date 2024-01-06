@@ -285,15 +285,12 @@
                                             alt="product-item" class="img-fluid" width="500%">
                                     </div>
                                     <div class="cart-concern position-absolute">
-                                        <form action="{{ route('pesanan', $item->id) }}" method="POST">
-                                            @csrf
-                                            <div class="cart-button d-flex">
-                                                <a href="{{ route('pesanan') }}"
-                                                    class="btn btn-medium btn-black">Buy<svg class="cart-outline">
-                                                        <use xlink:href="#cart-outline"></use>
-                                                    </svg></a>
-                                            </div>
-                                        </form>
+                                        <div class="cart-button d-flex">
+                                            <a href="{{ route('pesanan', $item->id) }}"
+                                                class="btn btn-medium btn-black">Buy<svg class="cart-outline">
+                                                    <use xlink:href="#cart-outline"></use>
+                                                </svg></a>
+                                        </div>
                                     </div>
                                     <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                                         <h3 class="card-title text-uppercase">

@@ -72,7 +72,8 @@ Route::middleware(['auth', 'role:user|admin'])->group(function () {
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(TransaksiController::class)->group(function () {
-        Route::get('/pesanan/{id}', 'order')->name('pesanan');
+        Route::get('/pesanan', 'order')->name('order');
+        Route::get('/pesanan/{id}', 'orderGetId')->name('pesanan');
         Route::post('/orders', 'store');
     });
 });
