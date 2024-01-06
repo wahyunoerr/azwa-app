@@ -30,9 +30,17 @@ class TransaksiController extends Controller
 
     function orderStore(Request $request)
     {
-        // DB::table('table_transaksi')->insert([
-        //     'nama_produk' => $request->
-        // ]);
+        $kd = "KDP-" . time();
+
+        DB::table('table_transaksi')->insert([
+            'kode_transaksi' => $kd,
+            'nama_produk' => $request->name_prd,
+            'kategori_id' => $request->kategori_id,
+            'user_id' => $request->username,
+            'harga' => $request->harga,
+        ]);
+
+        return redirect('transaksi');
     }
 
     /**
