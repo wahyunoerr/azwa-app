@@ -57,12 +57,35 @@
                                                     style="width: 150px">
                                             @endforeach
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <label
+                                                class="label d-flex align-items-center {{ $item->status == 0 ? 'btn btn-sm btn-warning rounded-pill' : 'btn btn-sm btn-success rounded-pill' }}">{{ $item->status == 1 ? 'Berhasil' : 'Pending' }}</label>
+                                        </td>
                                         <td class="d-flex justify-content-start">
+                                            @hasrole('admin')
+                                                <div class="dropdown d-flex align-items-center">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        Status
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        @if ($item->status == 1)
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('status', $item->id) }}">Pending</a>
+                                                        @elseif ($item->status == 0)
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('status', $item->id) }}">Berhasil</a>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endhasrole
                                             @foreach ($data as $upload)
-                                                <a href="{{ route('pesanan.upload', $upload->id) }}"
-                                                    class="btn btn-outline-primary btn-xm m-3"><i
-                                                        class="fas fa-solid fa-file"></i> Upload Bukti</a>
+                                                @hasrole('user')
+                                                    <a href="{{ route('pesanan.upload', $upload->id) }}"
+                                                        class="btn btn-outline-primary btn-xm m-3"><i
+                                                            class="fas fa-solid fa-file"></i> Upload Bukti</a>
+                                                @endhasrole
                                                 <a href="{{ route('pesanan.delete', $upload->id) }}"
                                                     class="btn btn-outline-danger btn-xm m-3"><i
                                                         class="fas fa-solid fa-trash"></i> Hapus Pesanan</a>
