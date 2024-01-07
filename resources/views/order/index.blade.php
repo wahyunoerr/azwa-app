@@ -13,7 +13,7 @@
                         <div class="col-12 col-sm-6">
                             <h3 class="d-inline-block d-sm-none"></h3>
                             <div class="col-12">
-                                <input type="file" value="{{ $order->gambar }}" multiple>
+                                {{-- <input type="file" value="{{ $order->gambar }}" multiple> --}}
                                 <img src="{{ Storage::disk('public')->url($order->gambar) }}" class="product-image"
                                     alt="Product Image">
                             </div>
@@ -51,8 +51,5 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-
-
-
     </div>
 @endsection

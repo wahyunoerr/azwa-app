@@ -35,7 +35,7 @@ class KategoriController extends Controller
             'kategori_name' => $request->name
         ]);
 
-        return redirect('kategori');
+        return redirect('kategori')->with('success', 'Category Data Added Successfully.');
     }
 
     /**
@@ -64,7 +64,7 @@ class KategoriController extends Controller
             'kategori_name' => $request->name,
         ]);
 
-        return redirect('kategori');
+        return redirect('kategori')->with('update', 'Update Data Successfully');
     }
 
 
