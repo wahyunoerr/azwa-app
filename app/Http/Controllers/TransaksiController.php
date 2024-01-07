@@ -54,6 +54,8 @@ class TransaksiController extends Controller
         return redirect('transaksi');
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -67,7 +69,7 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('table_transaksi')->insert([]);
+        // 
     }
 
     /**
@@ -83,7 +85,8 @@ class TransaksiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('table_transaksi')->where('id', $id)->get();
+        return view('transaksi.upload', compact('data'));
     }
 
     /**
@@ -91,7 +94,15 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('table_transaksi')->where('id', $id)->update([
+            'nama_produk' => $request->nama_produk,
+            'user_id' => $request->user_id,
+            'kategori_id' => $request->kategori_id,
+            'harga' => $request->harga,
+            'bukti_transaksi' => $request->bukti->store('photo/bukti-transaksi', 'public')
+        ]);
+
+        return redirect('transaksi');
     }
 
     /**
@@ -99,6 +110,7 @@ class TransaksiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('table_transaksi')->where('id', $id)->delete();
+        return redirect('transaksi');
     }
 }

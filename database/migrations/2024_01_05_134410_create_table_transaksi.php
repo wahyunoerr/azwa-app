@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('kategori_id');
             $table->string('gambar');
             $table->string('harga');
+            $table->string('bukti_transaksi')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
