@@ -23,7 +23,7 @@
                             <input type="hidden" name="user_id" value="{{ $upload->user_id }}">
                             <input type="hidden" name="kategori_id" value="{{ $upload->kategori_id }}">
                             <input type="hidden" name="harga" value="{{ $upload->harga }}">
-                            <input type="file" name="bukti_transaksi" value="{{ $upload->gambar }}">
+                            <input type="file" name="bukti"">
                             <br>
                             <button type="submit" class="btn btn-primary btn-rounded btn-sm mt-2">Upload <i
                                     class="fas fa-arrow-up"></i></button>

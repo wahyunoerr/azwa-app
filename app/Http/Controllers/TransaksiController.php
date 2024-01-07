@@ -55,13 +55,41 @@ class TransaksiController extends Controller
     }
 
 
+    public function status(string $id)
+    {
+        $data = DB::table('table_transaksi')->where('id', $id)->first();
+
+        $status_sekarang = $data->status;
+
+        if ($status_sekarang == 1) {
+            DB::table('table_transaksi')->where('id', $id)->update([
+                'status' => 0
+            ]);
+            // } elseif ($status_sekarang == 2) {
+            //     DB::table('table_transaksi')->where('id', $id)->update([
+            //         'status' => 1
+            //     ]);
+            // } elseif ($status_sekarang == 3) {
+            //     DB::table('table_transaksi')->where('id', $id)->update([
+            //         'status' => 2
+            //     ]);
+        } else {
+            DB::table('table_transaksi')->where('id', $id)->update([
+                'status' => 1
+            ]);
+        }
+        return redirect('transaksi');
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**

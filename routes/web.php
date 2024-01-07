@@ -47,6 +47,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
         Route::post('/produk/update/{id}', 'update')->name('produk.update');
         Route::get('/produk/delete/{id}', 'destroy')->name('produk.delete');
     });
+
+    Route::controller(TransaksiController::class)->group(function () {
+        Route::get('/status/{id}', 'status')->name('status');
+    });
 });
 
 Route::middleware(['auth', 'role:supplier|admin'])->group(function () {
