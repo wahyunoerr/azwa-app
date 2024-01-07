@@ -41,7 +41,7 @@ class ProductController extends Controller
             'gambar' => $request->gambar->store('photo/produk', 'public')
         ]);
 
-        return redirect('produk');
+        return redirect('produk')->with('success', 'Category Data Added Successfully.');
     }
 
     /**
@@ -74,7 +74,7 @@ class ProductController extends Controller
             'gambar' => $request->gambar->store('photo/produk', 'public')
         ]);
 
-        return redirect('produk');
+        return redirect('produk')->with('update', 'Update Data Successfully');
     }
 
     /**

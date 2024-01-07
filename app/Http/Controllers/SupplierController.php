@@ -38,7 +38,7 @@ class SupplierController extends Controller
             'prd_masuk' => $request->jlh_masuk
         ]);
 
-        return redirect('supplier');
+        return redirect('supplier')->with('success', 'Category Data Added Successfully.');
     }
 
     /**
@@ -69,7 +69,7 @@ class SupplierController extends Controller
             'prd_masuk' => $request->jlh_masuk,
         ]);
 
-        return redirect('supplier');
+        return redirect('supplier')->with('update', 'Update Data Successfully');
     }
 
     /**

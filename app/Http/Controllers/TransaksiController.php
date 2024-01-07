@@ -51,7 +51,7 @@ class TransaksiController extends Controller
             'updated_at' => now()
         ]);
 
-        return redirect('transaksi');
+        return redirect('transaksi')->with('success', 'Pesanan Berhasil, Segera Unggah Bukti Pembayaran!');
     }
 
 
@@ -65,14 +65,6 @@ class TransaksiController extends Controller
             DB::table('table_transaksi')->where('id', $id)->update([
                 'status' => 0
             ]);
-            // } elseif ($status_sekarang == 2) {
-            //     DB::table('table_transaksi')->where('id', $id)->update([
-            //         'status' => 1
-            //     ]);
-            // } elseif ($status_sekarang == 3) {
-            //     DB::table('table_transaksi')->where('id', $id)->update([
-            //         'status' => 2
-            //     ]);
         } else {
             DB::table('table_transaksi')->where('id', $id)->update([
                 'status' => 1
@@ -130,7 +122,7 @@ class TransaksiController extends Controller
             'bukti_transaksi' => $request->bukti->store('photo/bukti-transaksi', 'public')
         ]);
 
-        return redirect('transaksi');
+        return redirect('transaksi')->with('update', 'Bukti Pembayaran Berhasil Di Upload.');
     }
 
     /**
